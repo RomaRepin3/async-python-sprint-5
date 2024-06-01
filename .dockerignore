@@ -1,0 +1,14 @@
+venv
+.env
+.git
+.github
+.mypy_cache
+
+conf
+dockerfiles
+.env.template
+.gitignore
+docker-compose.yml
+setup.cfg
+README.md
+.pytest_cache
