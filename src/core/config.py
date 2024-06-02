@@ -18,6 +18,7 @@ class AppSettings(BaseSettings):
 
     PROJECT_NAME: str
     DATABASE_DSN: str
+    DATABASE_ECHO: bool
     PROJECT_HOST: str
     INTERNAL_PORT: int
     SECRET_KEY: str

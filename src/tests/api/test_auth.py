@@ -2,18 +2,20 @@ from http import HTTPStatus
 
 from pytest import mark
 
+from main import app
+
 
 class TestAuth:
 
     @mark.anyio
     async def test_register(self, client, user_data):
-        response = await client.post('/api/register', json=user_data)
+        response = await client.post(app.url_path_for('register'), json=user_data)
         assert response.status_code == HTTPStatus.CREATED, response.text
         assert response.json() == {'status': True, 'message': 'The operation was successful'}, response.text
 
     @mark.anyio
     async def test_auth(self, client, user_data):
-        response = await client.post('/api/register', json=user_data)
+        response = await client.post(app.url_path_for('register'), json=user_data)
         assert response.status_code == HTTPStatus.CREATED, response.text
         assert response.json() == {'status': True, 'message': 'The operation was successful'}, response.text
 
@@ -31,7 +33,7 @@ class TestAuth:
     @mark.anyio
     async def test_auth_fail(self, client):
         response = await client.post(
-            '/api/auth',
+            app.url_path_for('auth'),
             data={
                 'username': 'test',
                 'password': 'test'
